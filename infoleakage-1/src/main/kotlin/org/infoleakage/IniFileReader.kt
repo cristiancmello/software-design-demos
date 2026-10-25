@@ -17,7 +17,7 @@ class IniFileReader {
         val iniFile = IniFile()
 
         builder.split("\n").forEach {
-            val line = it.split("=")
+            val line = it.split(":")
             if (line.size > 1) {
                 iniFile.putParam(line[0], line[1])
             }

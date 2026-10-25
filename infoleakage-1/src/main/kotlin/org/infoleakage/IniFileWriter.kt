@@ -7,7 +7,7 @@ class IniFileWriter {
         val fileWriter = FileWriter(path)
 
         iniFile.getParams().forEach {
-            val line = "${it.key}=${it.value}"
+            val line = "${it.key}:${it.value}"
             fileWriter.appendLine(line)
         }
 

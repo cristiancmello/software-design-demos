@@ -40,7 +40,7 @@ class EditorConfigFileManagerIntegrationTests {
 
         val content = File("src/test/resources/example.ini").readText()
 
-        assertTrue(content.contains("parameter_name=value"))
-        assertTrue(content.contains("other_parameter=other_value"))
+        assertTrue(content.contains("parameter_name:value"))
+        assertTrue(content.contains("other_parameter:other_value"))
     }
 }

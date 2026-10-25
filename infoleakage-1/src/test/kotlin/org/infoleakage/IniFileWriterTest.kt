@@ -18,6 +18,6 @@ class IniFileWriterTest {
 
         val content = File("src/test/resources/example_iniFile.txt").readText()
 
-        assertTrue { content.contains("parameter_name=value") }
+        assertTrue { content.contains("parameter_name:value") }
     }
 }
