@@ -8,23 +8,28 @@ class Application {
     fun main() {
         File("config.ini").createNewFile()
 
-        val iniFileReader = IniFileReader()
-        val iniFile = iniFileReader.read("config.ini")
-
-        val greetingMessage = iniFile.getParams()["greeting"]
-        println(greetingMessage ?: "Greeting Message not available")
-
-        println("Save your configuration? [yes/no]")
-        val input = readln()
+        println("Load configuration? [yes/no]")
+        var input = readln()
 
         if (input == "yes") {
-            val iniFileWriter = IniFileWriter()
-            val iniFileUpdater = IniFileUpdater()
+            val iniFileReader = IniFileReader()
+            val iniFile = iniFileReader.read("config.ini")
 
-            val lastUpdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
-            iniFileUpdater.update(iniFile, mapOf("last_update" to lastUpdate))
+            val greetingMessage = iniFile.getParams()["greeting"]
+            println(greetingMessage ?: "Greeting Message not available")
 
-            iniFileWriter.write(iniFile, "config.ini")
+            println("Save your configuration? [yes/no]")
+            input = readln()
+
+            if (input == "yes") {
+                val iniFileWriter = IniFileWriter()
+                val iniFileUpdater = IniFileUpdater()
+
+                val lastUpdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+                iniFileUpdater.update(iniFile, mapOf("last_update" to lastUpdate))
+
+                iniFileWriter.write(iniFile, "config.ini")
+            }
         }
     }
 }
